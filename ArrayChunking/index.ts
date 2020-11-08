@@ -1,6 +1,6 @@
-const chunkedArray = ( arr: number[], length: number ): number[] =>
+const chunkedArray = ( arr: number[], length: number ): number[][] =>
 {
-    let chunked = [];
+    let chunked: number[][] = [];
     for ( let i = 0; i < arr.length; i += length )
     {
         const slicedArr = arr.slice( i, i + length );
@@ -9,5 +9,5 @@ const chunkedArray = ( arr: number[], length: number ): number[] =>
     return chunked;
 };
 
-const arr = [ 1, 2, 3, 4, 4, 5, 6 ];
-console.log( chunkedArray( arr, 2 ) );
+const chunkMe = [ 1, 2, 3, 4, 4, 5, 6 ];
+console.log( chunkedArray( chunkMe, 2 ) );

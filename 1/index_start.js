@@ -3,26 +3,22 @@
 // ex. longestWord('Hi there, my name is Brad') === 'there,'
 
 function longestWord(sen) {
+	// SOLUTION 1 - Return a single longest word
+	// SOLUTION 2 - Return an array and include multiple words if they have the same length
+	// SOLUTION 3 - Only return an array if multiple words, otherwise return a string
 
-  // SOLUTION 1 - Return a single longest word
-  // SOLUTION 2 - Return an array and include multiple words if they have the same length
-  // SOLUTION 3 - Only return an array if multiple words, otherwise return a string
+	const words = sen.match(/[a-z0-9]+/gi);
+	let max = 0;
+	let longestWord;
+	words.forEach((w) => {
+		if (w.length >= max) {
+			max = w.length;
+			longestWord = w;
+		}
+	});
 
-  const words = sen.match(/[a-z0-9]+/gi);
-  let max = 0;
-  let longestWord;
-  words.forEach(w => {
-    if(w.length >= max ){
-      max = w.length;
-      longestWord = w;
-    }
-  });
-  
-  const longestWordArray = words.filter(w => w.length === longestWord.length);
-  return longestWordArray.length === 1 ? longestWordArray.join('') : longestWordArray;
-
-
-  
+	const longestWordArray = words.filter((w) => w.length === longestWord.length);
+	return longestWordArray.length === 1 ? longestWordArray.join('') : longestWordArray;
 }
 
 // CHALLENGE 2: ARRAY CHUNKING
@@ -31,29 +27,25 @@ function longestWord(sen) {
 // ex. chunkArray([1, 2, 3, 4, 5, 6, 7], 2) === [[1, 2],[3, 4],[5, 6],[7]]
 
 function chunkArray(arr, len) {
+	// const chunkedArray = [];
+	// for(let i=0; i<arr.length; i+=len){
+	//   chunkedArray.push(arr.slice(i,i+len));
+	// }
+	// return chunkedArray;
 
-  // const chunkedArray = [];
-  // for(let i=0; i<arr.length; i+=len){
-  //   chunkedArray.push(arr.slice(i,i+len));
-  // }
-  // return chunkedArray;
+	const chunky = [];
 
-  const chunky = [];
-  
-  arr.forEach(e => {
+	arr.forEach((e) => {
+		const last = chunky[chunky.length - 1];
 
-    const last = chunky[chunky.length - 1];
+		if (!last || last.length === len) {
+			chunky.push([ e ]);
+		} else {
+			last.push(e);
+		}
+	});
 
-    if(!last || last.length === len){
-      chunky.push([e]);
-    }
-    else{
-      last.push(e);
-    }
-  })
-
-  return chunky;
-
+	return chunky;
 }
 
 // CHALLENGE 3: FLATTEN ARRAY
@@ -61,11 +53,10 @@ function chunkArray(arr, len) {
 // ex. [[1, 2], [3, 4], [5, 6], [7]] = [1, 2, 3, 4, 5, 6, 7]
 
 function flattenArray(arrays) {
-
-  // return arrays.reduce((a, b) => a.concat(b));
-  // return [].concat.apply([], arrays);
-  return [].concat(...arrays);
-  // concat picks up values -> depricates one layer of array that is.
+	// return arrays.reduce((a, b) => a.concat(b));
+	// return [].concat.apply([], arrays);
+	return [].concat(...arrays);
+	// concat picks up values -> depricates one layer of array that is.
 }
 
 // CHALLENGE 4: ANAGRAM
@@ -74,12 +65,12 @@ function flattenArray(arrays) {
 // ex. 'Dormitory' === 'dirty room##'
 
 function isAnagram(str1, str2) {
-  return purifyString(str1) === purifyString(str2);
+	return purifyString(str1) === purifyString(str2);
 }
 
-function purifyString(str){
-  // replace anythang that's not a word char with empty str
-  return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+function purifyString(str) {
+	// replace anythang that's not a word char with empty str
+	return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
 }
 
 // CHALLENGE 5: LETTER CHANGES
@@ -88,18 +79,17 @@ function purifyString(str){
 // ex. 'hello there' === 'Ifmmp UIfsf'
 
 function letterChanges(str) {
-  let newStr = str.toLowerCase().replace(/[a-z]/gi, (s) => {
-    if(s === 'z'){
-      return 'a';
-    }
-    else{
-      return String.fromCharCode(s.charCodeAt() + 1);
-    }
-  })
+	let newStr = str.toLowerCase().replace(/[a-z]/gi, (s) => {
+		if (s === 'z') {
+			return 'a';
+		} else {
+			return String.fromCharCode(s.charCodeAt() + 1);
+		}
+	});
 
-  newStr = newStr.replace(/a|e|i|o|u/gi, (v) => v.toUpperCase());
+	newStr = newStr.replace(/a|e|i|o|u/gi, (v) => v.toUpperCase());
 
-  return newStr;
+	return newStr;
 }
 
 // Call Function
