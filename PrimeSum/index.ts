@@ -1,5 +1,6 @@
 const isPrimeNumber = ( num: number ): boolean =>
 {
+    if ( num < 2 ) { return false; }
     const numSqrt = Math.floor( Math.sqrt( num ) );
     for ( let i = 2; i <= numSqrt; i++ )
     {
