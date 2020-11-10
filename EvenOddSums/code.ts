@@ -18,5 +18,5 @@ const evenOddSum = ( arr: number[] ): object =>
     return { evenSum, oddSum };
 };
 
-const arr: number[] = [ 1, 2, 3, 4, 5 ];
+const arr: number[] = [ 50, 60, 60, 45, 71 ];
 console.log( evenOddSum( arr ) );
