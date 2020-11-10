@@ -18,7 +18,6 @@ const changeLetters = ( str: string ): string =>
         }
         return newLetter;
     } );
-    console.log( res );
     return res.join( '' );
 };
 
